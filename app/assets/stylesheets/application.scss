@@ -10,6 +10,10 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+// require and require_tree were removed from the block above. Use @import for any Sass files.
+
+// Custom bootstrap variable must be set or imported *before* bootstrap.
+@import "bootstrap";
+@import "user.scss";

@@ -36,7 +36,13 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# Much nicer formatting than pretty print.
 gem 'awesome_print'
+gem 'bootstrap', '~> 4.1.3'
+# Boostrap JavaScript requires jQuery.
+gem 'jquery-rails'
+# Authentication.
+gem 'devise'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -58,9 +64,13 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  # Allows the use of "context" and "should" blocks in Minitest.
   gem 'shoulda', '~> 3.5'
+  # Allows a single test to be run with Minitest and the should gem behavior.
   gem 'minitest-line'
+  # Spec-style reporters in Minitest.
   gem 'minitest-reporters'
+  # RSpec style DSL in Minitest.
   gem 'minitest-spec-rails'
 end
 

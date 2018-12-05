@@ -5,5 +5,5 @@
     <%= f.submit "Clock Out", class: "btn btn-warning" %>
   <% end %>
 <% end %>
-<p>Clock-in time: <%= @clock_session.created_at %></p>
-<p>Clock-out time: <%= @clock_session.clock_out %></p>
+<p>Clock-in time: <%= ClockSession.formatted_est_datetime(@clock_session.created_at) %></p>
+<p>Clock-out time: <%= ClockSession.formatted_est_datetime(@clock_session.clock_out) %></p>

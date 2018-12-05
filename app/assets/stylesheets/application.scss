@@ -18,5 +18,9 @@
 @import "bootswatch/materia/variables";
 @import "bootstrap";
 @import "bootswatch/materia/bootswatch";
-@import "user.scss";
 @import "clock_sessions.scss";
+@import "user.scss";
+
+.disabled {
+  pointer-events: none;
+}

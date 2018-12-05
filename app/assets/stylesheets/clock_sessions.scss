@@ -2,7 +2,34 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.indent-major-header {
+.indent-major-header, .indent-button {
   position: relative;
   left: 25px;
+  clear: both;
+}
+
+.indent-button {
+  margin-bottom: 10px;
+}
+
+.indent-minor-header {
+  position: relative;
+  left: 45px;
+  clear: both
+}
+
+.datetime-row {
+  position: relative;
+  clear: both;
+}
+
+.top-major-header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  clear: both;
+}
+
+.new-user {
+  position: relative;
+  left: 15px;
 }

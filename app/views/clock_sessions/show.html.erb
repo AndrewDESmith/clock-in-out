@@ -1,9 +1,17 @@
-<h3>Current Session for <%= @user_full_name %></h3>
+<h3 class="indent-major-header">Current Session for <%= @user_full_name %></h3>
 <% if @clock_session.clock_out.blank? %>
   <%= form_with(model: @clock_session, url: {action: "update"}) do |f| %>
     <%= f.hidden_field :clock_out, value: Time.now %>
-    <%= f.submit "Clock Out", class: "btn btn-warning" %>
+    <%= f.submit "Clock Out", class: "btn btn-warning indent-button" %>
   <% end %>
 <% end %>
-<p>Clock-in time: <%= ClockSession.formatted_est_datetime(@clock_session.created_at) %></p>
-<p>Clock-out time: <%= ClockSession.formatted_est_datetime(@clock_session.clock_out) %></p>
+<div class="row datetime-row">
+  <div class="col-6 offset-1">
+    <p>Clock-in time: <%= ClockSession.formatted_est_datetime(@clock_session.created_at) %></p>
+  </div>
+</div>
+<div class="row datetime-row">
+  <div class="col-6 offset-1">
+    <p>Clock-out time: <%= ClockSession.formatted_est_datetime(@clock_session.clock_out) %></p>
+  </div>
+</div>

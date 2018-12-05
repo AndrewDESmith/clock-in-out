@@ -1,5 +1,5 @@
 <% if current_user %>
-  <h3>Sessions for <%= @user_full_name %></h3>
+  <h5>Sessions for <%= @user_full_name %></h5>
 
   <% if @last_clock_session && @last_clock_session.clock_out.blank? %>
     <%= link_to "End Current Session", clock_session_path(@last_clock_session), class: "btn btn-warning" %>
@@ -15,9 +15,9 @@
     <p>You have never clocked in.</p>
   <% end %>
 
-  <h3>Sessions for All Other Users</h3>
+  <h5>Sessions for All Other Users</h5>
   <% User.where.not(email: current_user.email).each do |user| %>
-    <p>Sessions for <%= user.first_name %> <%= user.last_name %></p>
+    <h6>Sessions for <%= user.first_name %> <%= user.last_name %></h6>
     <% user.clock_sessions.each do |clock_session| %>
       <div class="clock-sessions-for-user">
         <p>Clock in time: <%= clock_session.created_at %></p>
@@ -27,7 +27,7 @@
   <% end %>
 <% else %>
   <% User.all.each do |user| %>
-    <p>Sessions for <%= user.first_name %> <%= user.last_name %></p>
+    <h5>Sessions for <%= user.first_name %> <%= user.last_name %></h5>
     <% user.clock_sessions.each do |clock_session| %>
       <div class="clock-sessions-for-user">
         <p>Clock in time: <%= clock_session.created_at %></p>

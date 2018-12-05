@@ -1,3 +1,9 @@
 <h3>Clock session for <%= @user_full_name %></h3>
+<% if @clock_session.clock_out.blank? %>
+  <%= form_with(model: @clock_session, url: {action: "update"}) do |f| %>
+    <%= f.hidden_field :clock_out, value: Time.now %>
+    <%= f.submit "Clock Out", class: "btn btn-warning" %>
+  <% end %>
+<% end %>
 <p>Clock-in time: <%= @clock_session.created_at %></p>
 <p>Clock-out time: <%= @clock_session.clock_out %></p>

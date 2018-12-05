@@ -15,11 +15,8 @@
 // require and require_tree were removed from the block above. Use @import for any Sass files.
 
 // Custom bootstrap variable must be set or imported *before* bootstrap.
+@import "bootswatch/materia/variables";
 @import "bootstrap";
+@import "bootswatch/materia/bootswatch";
 @import "user.scss";
 @import "clock_sessions.scss";
-
-.logout {
-  // text-align: right;
-  // float: right !important;
-}

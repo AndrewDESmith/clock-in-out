@@ -1,0 +1,4 @@
+<%= form_with(model: @clock_session, url: {action: "update"}) do |f| %>
+  <%= f.hidden_field :clock_out, value: Time.now %>
+  <%= f.submit "Clock Out", class: "btn btn-warning" %>
+<% end %>

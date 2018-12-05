@@ -1,31 +1,58 @@
 class ClockSessionsController < ApplicationController
-  before_action :find_clock_session, only: [:show, :edit, :update, :destroy, :user_full_name]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :get_user_full_name, only: [:index, :show, :new]
+  before_action :find_clock_session, only: [:show, :edit, :update, :destroy, :user_full_name]
 
   def index
+    last_clock_session_for_user
     @clock_sessions = ClockSession.all
   end
 
   def show
-    @user_full_name = user_full_name
   end
 
   def new
-    @clock_session = current_user.clock_sessions.build
+    # Ensure that the user clocks out before being able to clock in again.
+    if last_clock_session_for_user && @last_clock_session.clock_out.blank?
+      redirect_to edit_clock_session_path(@last_clock_session.id)
+    else
+      @clock_session = current_user.clock_sessions.build
+    end
   end
 
   def create
     @clock_session = current_user.clock_sessions.build(clock_session_params)
     if @clock_session.valid?
       @clock_session.save
-      redirect_to @clock_session, :flash => { :success => "#{current_user.first_name} clocked in."}
+      redirect_to clock_sessions_path, :flash => { :success => "#{current_user.first_name} clocked in."}
     else
       render 'new', :status => :unprocessable_entity, :flash => { :error => "Could not clock in." }
     end
   end
 
-  def user_full_name
-    "#{@clock_session.user.first_name} #{@clock_session.user.last_name}"
+  def edit
+    return render_not_found(:forbidden) if @clock_session.user != current_user
+  end
+
+  def update
+    return render_not_found(:forbidden) if @clock_session.user != current_user
+    if @clock_session.update(clock_session_params)
+      redirect_to clock_sessions_path, :flash => { :success => "Successfully clocked out." }
+    else
+      render 'edit', :status => :unprocessable_entity, :flash => { :error => "Could not update clock session." }
+    end
+  end
+
+  def last_clock_session_for_user
+    if current_user && current_user.clock_sessions.last
+      @last_clock_session = current_user.clock_sessions.last
+    else
+      nil
+    end
+  end
+
+  def get_user_full_name
+    @user_full_name = "#{current_user.first_name} #{current_user.last_name}" if current_user
   end
 
   private

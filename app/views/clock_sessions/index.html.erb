@@ -1,12 +1,29 @@
 <% if current_user %>
-  <h3>Clock Sessions for <%= current_user.first_name %> <%= current_user.last_name %></h3>
-  <%= link_to "Clock In", new_clock_session_path %>
+  <h3>Clock Sessions for <%= @user_full_name %></h3>
+
+  <% if @last_clock_session && @last_clock_session.clock_out.blank? %>
+    <%= link_to "Clock Out", clock_session_path(@last_clock_session), class: "btn btn-warning" %>
+  <% else %>
+    <%= link_to "Clock In", new_clock_session_path, class: "btn btn-success" %>
+  <% end %>
+
   <% current_user.clock_sessions.each do |clock_session| %>
     <p>Clock in time: <%= clock_session.created_at %></p>
     <p>Clock out time: <%= clock_session.clock_out %></p>
   <% end %>
   <% if current_user.clock_sessions.blank? %>
-    <p>You have not yet clocked in or out.</p>
+    <p>You have never clocked in.</p>
+  <% end %>
+
+  <h3>Clock Sessions for All Other Users</h3>
+  <% User.where.not(email: current_user.email).each do |user| %>
+    <p>Clock sessions for <%= user.first_name %> <%= user.last_name %></p>
+    <% user.clock_sessions.each do |clock_session| %>
+      <div class="clock-sessions-for-user">
+        <p>Clock in time: <%= clock_session.created_at %></p>
+        <p>Clock out time: <%= clock_session.clock_out %></p>
+      </div>
+    <% end %>
   <% end %>
 <% else %>
   <% User.all.each do |user| %>

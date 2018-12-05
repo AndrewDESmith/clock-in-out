@@ -1,11 +1,7 @@
-<p>Current user's first name: <%= current_user.first_name %></p><br/>
-
-<%= form_with(model: @clock_session) do |f| %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.submit "Clock In", class: "btn btn-success clock-in" %>
+<% if current_user.clock_sessions.last.clock_out.blank? %>
+  <h3>New clock session for <%= @user_full_name %></h3>
+  <%= form_with(model: @clock_session) do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.submit "Clock In", class: "btn btn-success clock-in" %>
+  <% end %>
 <% end %>
-
-<br/>
-<div class="clock-out">
-  <button type="button" class="btn btn-warning clock-out">Clock Out</button>
-</div>

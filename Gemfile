@@ -39,6 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Much nicer formatting than pretty print.
 gem 'awesome_print'
 gem 'bootstrap', '~> 4.1.3'
+gem 'bootswatch'
 # Boostrap JavaScript requires jQuery.
 gem 'jquery-rails'
 # Authentication.

@@ -8,8 +8,14 @@
   <% end %>
 
   <% current_user.clock_sessions.each do |clock_session| %>
-    <p>Clock in time: <%= clock_session.created_at %></p>
-    <p>Clock out time: <%= clock_session.clock_out %></p>
+    <div class="row">
+      <div class="col-5 offset-1">
+        <p>Clock in time: <%= clock_session.created_at %></p>
+      </div>
+      <div class="col-5 offset-1">
+        <p>Clock out time: <%= clock_session.clock_out %></p>
+      </div>
+    </div>
   <% end %>
   <% if current_user.clock_sessions.blank? %>
     <p>You have never clocked in.</p>
@@ -19,9 +25,13 @@
   <% User.where.not(email: current_user.email).each do |user| %>
     <h6>Sessions for <%= user.first_name %> <%= user.last_name %></h6>
     <% user.clock_sessions.each do |clock_session| %>
-      <div class="clock-sessions-for-user">
-        <p>Clock in time: <%= clock_session.created_at %></p>
-        <p>Clock out time: <%= clock_session.clock_out %></p>
+      <div class="clock-sessions-for-user row">
+        <div class="col-5 offset-1">
+          <p>Clock in time: <%= clock_session.created_at %></p>
+        </div>
+        <div class="col-5 offset-1">
+          <p>Clock out time: <%= clock_session.clock_out %></p>
+        </div>
       </div>
     <% end %>
   <% end %>
@@ -29,9 +39,13 @@
   <% User.all.each do |user| %>
     <h5>Sessions for <%= user.first_name %> <%= user.last_name %></h5>
     <% user.clock_sessions.each do |clock_session| %>
-      <div class="clock-sessions-for-user">
-        <p>Clock in time: <%= clock_session.created_at %></p>
-        <p>Clock out time: <%= clock_session.clock_out %></p>
+      <div class="clock-sessions-for-user row">
+        <div class="col-5 offset-1">
+          <p>Clock in time: <%= clock_session.created_at %></p>
+        </div>
+        <div class="col-5 offset-1">
+          <p>Clock out time: <%= clock_session.clock_out %></p>
+        </div>
       </div>
     <% end %>
   <% end %>

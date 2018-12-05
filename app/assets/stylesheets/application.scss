@@ -17,3 +17,9 @@
 // Custom bootstrap variable must be set or imported *before* bootstrap.
 @import "bootstrap";
 @import "user.scss";
+@import "clock_sessions.scss";
+
+.logout {
+  // text-align: right;
+  // float: right !important;
+}

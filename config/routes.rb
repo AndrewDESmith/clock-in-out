@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   # resources :users, only: [:index, :show]
   get "/users", to: "users#index"
   get "/user/:id", to: "users#show"
-  root to: "users#index"
+  resources :clock_sessions
+  root to: "clock_sessions#index"
 end

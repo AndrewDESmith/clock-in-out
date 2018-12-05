@@ -1,4 +1,4 @@
-<h3>Clock session for <%= @user_full_name %></h3>
+<h3>Current Session for <%= @user_full_name %></h3>
 <% if @clock_session.clock_out.blank? %>
   <%= form_with(model: @clock_session, url: {action: "update"}) do |f| %>
     <%= f.hidden_field :clock_out, value: Time.now %>

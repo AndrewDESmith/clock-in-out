@@ -1,5 +1,5 @@
 <% if current_user.clock_sessions.last.clock_out.blank? %>
-  <h3>New clock session for <%= @user_full_name %></h3>
+  <h3>New Session for <%= @user_full_name %></h3>
   <%= form_with(model: @clock_session) do |f| %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.submit "Clock In", class: "btn btn-success clock-in" %>

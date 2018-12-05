@@ -5,7 +5,6 @@ require 'rails/test_help'
 require File.expand_path('../../config/environment', __FILE__)
 require "minitest/spec"
 require "minitest/reporters"
-# Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(:color => true)]
 Minitest::Reporters.use! [Minitest::Reporters::SpecReporter.new(:color => true)]
 
 module AroundEachTest
@@ -14,6 +13,18 @@ end
 
 class Minitest::Test
   include AroundEachTest
+end
+
+module ActionController
+  class TestCase
+    include Devise::Test::ControllerHelpers
+  end
+end
+
+module ActionDispatch
+  class IntegrationTest
+    include Devise::Test::IntegrationHelpers
+  end
 end
 
 class ActiveSupport::TestCase

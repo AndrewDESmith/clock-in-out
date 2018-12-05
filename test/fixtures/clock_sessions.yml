@@ -3,9 +3,15 @@
 # This model initially had no columns defined. If you add columns to the
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+
+first_clock_session_for_andrew:
+  user: andrew
+  created_at: 2000-01-01
+  updated_at: 2001-01-01
+  clock_out: 2001-01-02
+
+second_clock_session_for_andrew:
+  user: andrew
+  created_at: 2000-01-02
+  updated_at: 2001-01-02
+  clock_out:

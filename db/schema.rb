@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_04_223124) do
+ActiveRecord::Schema.define(version: 2018_12_19_214923) do
 
   create_table "clock_sessions", force: :cascade do |t|
     t.datetime "clock_out"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2018_12_04_223124) do
     t.datetime "updated_at"
     t.integer "user_id"
     t.index ["clock_out"], name: "index_clock_sessions_on_clock_out"
+    t.index ["user_id"], name: "index_clock_sessions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

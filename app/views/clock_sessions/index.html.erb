@@ -4,49 +4,57 @@
   <% if @last_clock_session && @last_clock_session.clock_out.blank? %>
     <%= link_to "End Current Session", clock_session_path(@last_clock_session), class: "btn btn-warning indent-button" %>
   <% else %>
-    <%= link_to "Create New Session", new_clock_session_path, class: "btn btn-success indent-button" %>
+    <%= link_to "Create New Session", new_clock_session_path, class: "btn btn-success indent-button" %>>
+
   <% end %>
 
-  <% current_user.clock_sessions.each do |clock_session| %>
-    <div class="row datetime-row">
-      <div class="col-3 offset-1">
-        <p>Clock in time: <%= ClockSession.formatted_est_datetime(clock_session.created_at) %></p>
+  <div class="current-user-clock-sessions">
+    <% current_user.clock_sessions.each do |clock_session| %>
+      <div class="row datetime-row">
+        <div class="col-3 offset-1">
+          <p>Clock in time: <%= ClockSession.formatted_est_datetime(clock_session.created_at) %></p>
+        </div>
+        <div class="col-3 offset-1">
+          <p>Clock out time: <%= ClockSession.formatted_est_datetime(clock_session.clock_out) %></p>
+        </div>
       </div>
-      <div class="col-3 offset-1">
-        <p>Clock out time: <%= ClockSession.formatted_est_datetime(clock_session.clock_out) %></p>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
+
   <% if current_user.clock_sessions.blank? %>
     <p>You have never clocked in.</p>
   <% end %>
 
   <h5 class="indent-major-header top-major-header">Sessions for All Other Users</h5>
-  <% User.where.not(email: current_user.email).each do |user| %>
-    <h6 class="indent-minor-header">Sessions for <%= user.first_name %> <%= user.last_name %></h6>
-    <% user.clock_sessions.each do |clock_session| %>
-      <div class="clock-sessions-for-user row datetime-row">
-        <div class="col-3 offset-1">
-          <p>Clock in time: <%= ClockSession.formatted_est_datetime(clock_session.created_at) %></p>
+  <div class="other-users-clock-session">
+    <% User.where.not(email: current_user.email).each do |user| %>
+      <h6 class="indent-minor-header">Sessions for <%= user.first_name %> <%= user.last_name %></h6>
+      <% user.clock_sessions.each do |clock_session| %>
+        <div class="clock-sessions-for-user row datetime-row">
+          <div class="col-3 offset-1">
+            <p>Clock in time: <%= ClockSession.formatted_est_datetime(clock_session.created_at) %></p>
+          </div>
+          <div class="col-3 offset-1">
+            <p>Clock out time: <%= ClockSession.formatted_est_datetime(clock_session.clock_out) %></p>
+          </div>
         </div>
-        <div class="col-3 offset-1">
-          <p>Clock out time: <%= ClockSession.formatted_est_datetime(clock_session.clock_out) %></p>
-        </div>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 <% else %>
-  <% User.all.each do |user| %>
-    <h5 class="indent-major-header top-major-header">Sessions for <%= user.first_name %> <%= user.last_name %></h5>
-    <% user.clock_sessions.each do |clock_session| %>
-      <div class="clock-sessions-for-user row datetime-row">
-        <div class="col-3 offset-1">
-          <p>Clock in time: <%= ClockSession.formatted_est_datetime(clock_session.created_at) %></p>
+  <div class="other-users-clock-session">
+    <% User.all.each do |user| %>
+      <h5 class="indent-major-header top-major-header">Sessions for <%= user.first_name %> <%= user.last_name %></h5>
+      <% user.clock_sessions.each do |clock_session| %>
+        <div class="clock-sessions-for-user row datetime-row">
+          <div class="col-3 offset-1">
+            <p>Clock in time: <%= ClockSession.formatted_est_datetime(clock_session.created_at) %></p>
+          </div>
+          <div class="col-3 offset-1">
+            <p>Clock out time: <%= ClockSession.formatted_est_datetime(clock_session.clock_out) %></p>
+          </div>
         </div>
-        <div class="col-3 offset-1">
-          <p>Clock out time: <%= ClockSession.formatted_est_datetime(clock_session.clock_out) %></p>
-        </div>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 <% end %>

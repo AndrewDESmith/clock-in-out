@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.indent-major-header, .indent-button, .session-times-submit, #begin_year, #begin_month, #begin_day, #end_year, #end_month, #end_day {
+.indent-major-header, .indent-button, .session-times-submit, #begin_year, #begin_month, #begin_day, #end_year, #end_month, #end_day, .total-session-time {
   position: relative;
   left: 25px;
   clear: both;
@@ -52,4 +52,8 @@
 
 .begin-label, .end-label {
   margin-left: 25px;
+}
+
+#total-session-time-for-user {
+  margin-left: 10px;
 }

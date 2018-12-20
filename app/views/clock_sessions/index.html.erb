@@ -4,8 +4,10 @@
   <% if @last_clock_session && @last_clock_session.clock_out.blank? %>
     <%= link_to "End Current Session", clock_session_path(@last_clock_session), class: "btn btn-warning indent-button" %>
   <% else %>
-    <%= link_to "Create New Session", new_clock_session_path, class: "btn btn-success indent-button" %>>
-
+    <%= link_to "Create New Session", new_clock_session_path, class: "btn btn-success indent-button" %>
+    <div class="form-container">
+      <%= render 'date_range' %>
+    </div>
   <% end %>
 
   <div class="current-user-clock-sessions">

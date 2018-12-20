@@ -1,0 +1,9 @@
+<%= form_tag(total_user_clock_sessions_path(current_user), method: :get, id: "date-range") do %>
+  <div class="form-group">
+    <%= label_tag "begin", "First Login Date", class: "begin-label" %><br/>
+    <%= select_date Date.today, prefix: :begin %><br/>
+    <%= label_tag "end", "Last Login Date (optional)", class: "end-label" %><br/>
+    <%= select_date Date.today, prefix: :end%>
+  </div>
+  <%= submit_tag "Find Total Session Time for Dates", class: "btn btn-sm btn-primary session-times-submit" %>
+<% end %>

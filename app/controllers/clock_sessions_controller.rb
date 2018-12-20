@@ -1,6 +1,6 @@
 class ClockSessionsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :get_user_full_name, only: [:index, :show, :new]
+  before_action :get_user_full_name, only: [:index, :show, :new, :total]
   before_action :find_clock_session, only: [:show, :edit, :update, :destroy, :user_full_name]
 
   def index
@@ -51,11 +51,18 @@ class ClockSessionsController < ApplicationController
     end
   end
 
+  def total
+    return unless params[:begin]
+    @beginning = "#{params[:begin][:year]}-#{params[:begin][:month]}-#{params[:begin][:day]}"
+    @ending = "#{params[:end][:year]}-#{params[:end][:month]}-#{params[:end][:day]}"
+    @total = current_user.total_user_session_time_for_date_range(@beginning, @ending)
+  end
+
+  private
   def get_user_full_name
     @user_full_name = "#{current_user.first_name} #{current_user.last_name}" if current_user
   end
 
-  private
   def find_clock_session
     @clock_session = ClockSession.find_by_id(params[:id])
     return render_not_found if @clock_session.blank?

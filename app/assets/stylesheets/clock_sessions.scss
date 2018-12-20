@@ -2,13 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.indent-major-header, .indent-button {
+.indent-major-header, .indent-button, .session-times-submit, #begin_year, #begin_month, #begin_day, #end_year, #end_month, #end_day {
   position: relative;
   left: 25px;
   clear: both;
 }
 
-.indent-button {
+.indent-button, .session-times-submit {
   margin-bottom: 10px;
 }
 
@@ -32,4 +32,24 @@
 .new-user {
   position: relative;
   left: 15px;
+}
+
+#begin_year, #begin_month, #begin_day {
+  margin-bottom: 10px;
+}
+
+#begin_year, #end_year {
+  width: 50px;
+}
+
+#begin_month, #end_month{
+  width: 80px;
+}
+
+#begin_day, #end_day {
+  width: 40px;
+}
+
+.begin-label, .end-label {
+  margin-left: 25px;
 }

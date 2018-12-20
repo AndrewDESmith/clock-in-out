@@ -5,5 +5,10 @@ Rails.application.routes.draw do
   get "/users", to: "users#index"
   get "/user/:id", to: "users#show"
   resources :clock_sessions
+  resources :users, only: [:show] do
+    resources :clock_sessions do
+      get "total", on: :collection
+    end
+  end
   root to: "clock_sessions#index"
 end

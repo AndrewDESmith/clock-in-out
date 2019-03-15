@@ -1,0 +1,9 @@
+class ApplicationConfiguration
+  def self.set(property, value)
+    @configuration[property] = value
+  end
+
+  def self.get(property)
+    @configuration[property]
+  end
+end

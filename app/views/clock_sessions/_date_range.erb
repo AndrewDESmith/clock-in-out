@@ -1,4 +1,4 @@
-<%= form_tag(total_user_clock_sessions_path(current_user), method: :get, id: "date-range") do %>
+<%= form_tag(total_user_clock_sessions_path(current_user), method: :get, id: "date-range", "data-type" => :json, remote: true, data: { params: { begin: { "year" => "2018", "month" => "3", "day" => "13" }, end: { "year" => "2019", "month" => "3", "day" => "13" } } }) do %>
   <div class="form-group">
     <%= label_tag "begin", "First Login Date", class: "begin-label" %><br/>
     <%= select_date Date.today, prefix: :begin %><br/>

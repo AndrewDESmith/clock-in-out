@@ -1,0 +1,34 @@
+$("document").ready(function() {
+  $("#date-range").submit(function(event) {
+    event.preventDefault();
+
+    console.log("$(this): ", $(this));
+    console.log("event: ", event);
+
+    let url = $(this).attr('action');
+    console.log("url: ", url);
+    console.log("$(this): ", $(this));
+    console.log("$(this).serialize(): ", $(this).serialize());
+    console.log("$('dynamic-total'): ", $(".dynamic-total"));
+    console.log("$(this).data('params'): ", $(this).data("params"));
+    let params = $(this).data("params")
+    console.log("Rails: ", Rails);
+    let total = $(".dynamic-total").data("total");
+    console.log("total: ", total);
+
+    Rails.ajax({
+      type: "get",
+      url: url,
+      data: params,
+      dataType: "JSON",
+      success: function(json) {
+        console.log("json:", json);
+        console.log($(json).find(".total-session-time"));
+        console.log($(json).find(".total-session-time")[0].innerHTML);
+        $(".returned-total").append("<p>" + total + "</p>");
+      }
+    });
+
+    // $.get("/users/1/clock_sessions/total", { total: "total" });
+  });
+});

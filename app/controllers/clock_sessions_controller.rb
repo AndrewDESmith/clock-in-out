@@ -6,6 +6,13 @@ class ClockSessionsController < ApplicationController
   def index
     last_clock_session_for_user
     @clock_sessions = ClockSession.all
+    respond_to do |format|
+      format.html
+      if @total
+        format.json { render json: @total.to_json }
+        format.js
+      end
+    end
   end
 
   def show
@@ -56,6 +63,19 @@ class ClockSessionsController < ApplicationController
     @beginning = "#{params[:begin][:year]}-#{params[:begin][:month]}-#{params[:begin][:day]}"
     @ending = "#{params[:end][:year]}-#{params[:end][:month]}-#{params[:end][:day]}"
     @total = current_user.total_user_session_time_for_date_range(@beginning, @ending)
+    ap ""
+    ap "@total.to_json"
+    ap @total.to_json
+    ap ""
+    respond_to do |format|
+      ap "format:"
+      ap format
+      format.html
+      ap "format.json:"
+      ap format.json
+      format.json { render json: @total.to_json }
+      format.js
+    end
   end
 
   private
